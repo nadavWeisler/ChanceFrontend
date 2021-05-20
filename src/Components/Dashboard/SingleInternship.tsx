@@ -10,13 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import pic from '../../assets/pic.jpeg'
 import { ResultSnackBar } from '../ResultSnackBar';
 import { MoreDetailsDialog } from './MoreDetailsDialogProps';
+import { CardHeader } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
     },
     media: {
-        height: 140,
+        height: 160,
     },
 });
 
@@ -24,12 +25,12 @@ export interface InternshipProps {
     name: string;
     company: string;
     imgLink: string;
-    detail: string;
+    details: string;
 
 }
 
-export const Internship = (props: InternshipProps) => {
-    const { company, name, imgLink, detail } = props;
+export const SingleInternship = (props: InternshipProps) => {
+    const { company, name, imgLink, details } = props;
     const classes = useStyles();
 
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
@@ -59,11 +60,13 @@ export const Internship = (props: InternshipProps) => {
                         image={pic}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {name} - {company}
+                        <Typography variant="body2" color="textPrimary" component="p">
+                            {name}
                         </Typography>
+                    </CardContent>
+                    <CardContent>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {detail}
+                            {company}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -78,8 +81,7 @@ export const Internship = (props: InternshipProps) => {
             </Card>
             <MoreDetailsDialog
                 handleCancel={handleCloseMoreDetails}
-                details={detail}
-                moreDetails={detail}
+                details={details}
                 name={name}
                 handleClose={handleCloseMoreDetails}
                 open={openMoreDetails}

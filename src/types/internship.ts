@@ -1,7 +1,8 @@
 export interface Internship {
-    id: string;
     name: string;
-    count: 0;
+    imgLink: string;
+    company: string
+    details: string;
 }
 
 export interface InternshipState {
@@ -28,4 +29,4 @@ interface FetchInternshipsErrorAction {
     payload: string;
 }
 export type InternshipAction =
-FetchInternshipsAction | FetchInternshipsSuccessAction | FetchInternshipsErrorAction
+    FetchInternshipsAction | FetchInternshipsSuccessAction | FetchInternshipsErrorAction

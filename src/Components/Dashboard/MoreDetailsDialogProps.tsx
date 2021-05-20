@@ -12,13 +12,12 @@ const PaperComponent = (props: JSX.IntrinsicAttributes & Pick<PaperProps, "ref" 
 export interface MoreDetailsDialogProps {
     name: string;
     details: string;
-    moreDetails: string;
     open: boolean;
     handleClose: () => void;
     handleCancel: () => void;
 }
 
-export const MoreDetailsDialog = ({ name, open, details, moreDetails, handleClose, handleCancel }: MoreDetailsDialogProps) => {
+export const MoreDetailsDialog = ({ name, open, details, handleClose, handleCancel }: MoreDetailsDialogProps) => {
     return (
         <Dialog
             onAbort={handleCancel}
@@ -32,9 +31,6 @@ export const MoreDetailsDialog = ({ name, open, details, moreDetails, handleClos
             </DialogTitle>
             <DialogContent style={{ cursor: 'move' }} id="draggable-dialog-title">
                 {details}
-            </DialogContent>
-            <DialogContent>
-                {moreDetails}
             </DialogContent>
         </Dialog>
     );

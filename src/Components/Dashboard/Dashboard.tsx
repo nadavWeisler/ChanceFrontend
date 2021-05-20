@@ -1,11 +1,12 @@
 import { Grid } from '@material-ui/core'
 import { data } from '../../assets/dashboardData'
-import { Internship, InternshipProps } from './Internship'
 import { SearchBox } from '../Searchbox'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FetchInternships } from '../../store/actions/internship'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useActions } from '../../hooks/useActions'
+import { Internship } from '../../types/internship'
+import { SingleInternship } from './SingleInternship'
 
 export const Dashboard = () => {
     const { internships } = useTypedSelector(state => state.internships)
@@ -14,10 +15,11 @@ export const Dashboard = () => {
 
     useEffect(() => {
         FetchInternships();
-    }, [internships])
-    
+    }, []);
+
     const onFilter = (value: string) => {
         setFilterString(value);
+        console.log(internships);
     }
 
     return (
@@ -31,13 +33,13 @@ export const Dashboard = () => {
                 alignItems="flex-start"
             >
                 {
-                    data.map((option: InternshipProps) => (
-                        <Grid item xs={12} sm={6} md={3} key={data.indexOf(option)}>
-                            <Internship
+                    internships.map((option: Internship) => (
+                        <Grid item xs={12} sm={6} md={3} key={internships.indexOf(option)}>
+                            <SingleInternship
                                 name={option.name}
                                 imgLink={option.imgLink}
                                 company={option.company}
-                                detail={option.detail}
+                                details={option.details}
                             />
                         </Grid>
                     ))
