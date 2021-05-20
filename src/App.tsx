@@ -7,11 +7,17 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import AppMenu from './AppMenu'
 import Login from './Login'
+<<<<<<< HEAD
+=======
+import './App.css';
+import { AppRouter } from './AppRouter';
+>>>>>>> origin/main
 
 const App: React.FC = () => {
   const classes = useStyles()
 
   return (
+<<<<<<< HEAD
     <div className={clsx('App', classes.root)}>
       <CssBaseline />
       <Drawer
@@ -27,6 +33,24 @@ const App: React.FC = () => {
           <Login/>
         </Container>
       </main>
+=======
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Chance. Giving everyone a chance
+        </p>
+        <AppRouter />
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+>>>>>>> origin/main
     </div>
   )
 }

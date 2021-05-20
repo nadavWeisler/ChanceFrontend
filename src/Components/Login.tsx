@@ -93,7 +93,7 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
-const Login = () => {
+export const Login = () => {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
 
