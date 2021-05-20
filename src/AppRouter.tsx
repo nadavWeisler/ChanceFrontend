@@ -5,6 +5,7 @@ import { Login } from './components/Login';
 import { SignUp } from './components/Signup';
 import { PageNotFound } from './components/PageNotFound'
 import { useState } from 'react';
+import { Dashboard } from './components/Dashboard/Dashboard';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +36,8 @@ export const AppRouter = () => {
                         <BrowserRouter>
                             <Switch>
                                 <Route path="/" component={Login} exact />
-                                <Route path="/signup" component={SignUp} exact/>
+                                <Route path="/signup" component={SignUp}/>
+                                <Route path="/dashboard" component={Dashboard}/>
                                 <Route component={PageNotFound} />
                             </Switch>
                         </BrowserRouter>
