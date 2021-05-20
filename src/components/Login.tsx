@@ -100,6 +100,7 @@ export const Login = () => {
             size="large"
             color="secondary"
             className={classes.loginBtn}
+            href="Dashboard"
             onClick={handleLogin}
           >
             Submit

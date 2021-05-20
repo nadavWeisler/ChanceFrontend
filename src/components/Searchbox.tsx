@@ -38,7 +38,7 @@ export const SearchBox = ({ onInputChange }: SearchBoxProps) => {
             <Paper component="form" className={classes.root}>
                 <InputBase
                     className={classes.input}
-                    placeholder="Filter Experiments"
+                    placeholder="Filter Internships"
                     onChange={(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
                         onInputChange(event.target.value);
                     }}
