@@ -1,0 +1,1 @@
+export const GET_INTERNSHIP_DATA_LINK = ""

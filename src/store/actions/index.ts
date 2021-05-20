@@ -1,7 +1,7 @@
 import * as UserActionCreators from './user'
-import * as ExperimentActionCreators from './experiment'
+import * as InternshipActionCreators from './internship'
 
 export default {
     ...UserActionCreators,
-    ...ExperimentActionCreators
+    ...InternshipActionCreators
 }
