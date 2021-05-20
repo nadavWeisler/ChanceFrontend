@@ -1,12 +1,17 @@
 import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+import { Redirect } from 'react-router';
+import { Login } from './Login';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
+import { Checkbox } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -61,6 +66,14 @@ const initialState: State = {
 
 export const SignUp = () => {
     const classes = useStyles();
+    const handleSignUp = () => {
+        <Redirect
+            to={{
+                pathname: "/Login",
+                state: { Login }
+            }}
+        />
+    };
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <Card className={classes.card}>
@@ -107,17 +120,27 @@ export const SignUp = () => {
                             placeholder="Validate Password"
                             margin="normal"
                         />
+                        <Typography variant="h6" component="h6">
+                            chek if admin
+                        </Typography>
+                        <Checkbox
+                            value="Admin"
+                            inputProps={{ 'aria-label': 'Checkbox A' }}
+                        />
                     </div>
                 </CardContent>
                 <CardActions>
-                    <Button
-                        variant="contained"
-                        size="large"
-                        color="secondary"
-                        className={classes.signupBtn}
-                        disabled={false}>
-                        signup
-            </Button>
+                    <Link to="/">
+                        <Button
+                            variant="contained"
+                            size="large"
+                            color="secondary"
+                            className={classes.signupBtn}
+                            onClick={handleSignUp}
+                            disabled={false}>
+                            signup
+                            </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </form>
