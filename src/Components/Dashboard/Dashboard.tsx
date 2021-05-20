@@ -19,7 +19,6 @@ export const Dashboard = () => {
 
     const onFilter = (value: string) => {
         setFilterString(value);
-        console.log(internships);
     }
 
     return (
