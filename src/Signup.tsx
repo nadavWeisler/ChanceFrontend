@@ -85,6 +85,14 @@ export const SignUp = () => {
                         />
                         <TextField
                             fullWidth
+                            id="eamil"
+                            type="email"
+                            label="email"
+                            placeholder="email"
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
                             id="password"
                             type="password"
                             label="Password"
