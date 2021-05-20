@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Login } from './Login';
-import { SignUp } from './Signup';
-import { PageNotFound } from './PageNotFound'
+import { Login } from './components/Login';
+import { SignUp } from './components/Signup';
+import { PageNotFound } from './components/PageNotFound'
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
