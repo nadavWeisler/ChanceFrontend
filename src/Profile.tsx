@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+import avatar from './avatar.jpeg'
 import Card from '@material-ui/core/Card';
 import { Avatar, Checkbox } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,36 +10,36 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        container: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            width: 400,
-            margin: `${theme.spacing(0)} auto`
-        },
-        loginBtn: {
-            marginTop: theme.spacing(2),
-            flexGrow: 1
-        },
-        header: {
-            textAlign: 'center',
-            background: '#212121',
-            color: '#fff'
-        },
-        card: {
-            marginTop: theme.spacing(10)
-        }
-    })
+  createStyles({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      width: 400,
+      margin: `${theme.spacing(0)} auto`
+    },
+    loginBtn: {
+      marginTop: theme.spacing(2),
+      flexGrow: 1
+    },
+    header: {
+      textAlign: 'center',
+      background: '#212121',
+      color: '#fff'
+    },
+    card: {
+      marginTop: theme.spacing(10)
+    }
+  })
 );
 
 //state type
 
-type State =
-    {
-        name: string
-        email: string
-        image: string
-    };
+type State = 
+{
+    name: string
+    email: string 
+    image: string      
+};
 
 const initialState: State = {
     name: 'test',
@@ -54,11 +55,11 @@ export const Profile = () => {
             <Card className={classes.card}>
                 <CardHeader className={classes.header} title="Sign Up" />
                 <CardContent>
-                <Avatar alt="Remy Sharp" src="\src\avatar.jpeg" />
+                <Avatar  src={avatar}/>
                     <div>
                         <Typography variant="h6" component="h6">
                             // name
-                        </Typography>
+                        </Typography> 
                         <Typography variant="h6" component="h6">
                             // email
                         </Typography>
