@@ -149,7 +149,7 @@ export const Login = () => {
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <Card className={classes.card}>
-        <CardHeader className={classes.header} title="Login App" />
+        <CardHeader className={classes.header} title="Login to chance" />
         <CardContent>
           <div>
             <TextField
