@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import Login from './Login'
 import './App.css';
+import { AppRouter } from './AppRouter';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <p>
           Chance. Giving everyone a chance
         </p>
-<Login/>
+        <AppRouter />
         <a
           className="App-link"
           href="https://reactjs.org"
