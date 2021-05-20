@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import pic from '../../assets/pic.jpeg'
 import { ResultSnackBar } from '../ResultSnackBar';
+import { MoreDetailsDialog } from './MoreDetailsDialogProps';
 
 const useStyles = makeStyles({
     root: {
@@ -40,6 +41,15 @@ export const Internship = (props: InternshipProps) => {
         setOpenSnackBar(false);
     };
 
+    const [openMoreDetails, setOpenMoreDetails] = useState<boolean>(false);
+    const handleClickOpenMoreDetails = () => {
+        setOpenMoreDetails(true);
+    };
+
+    const handleCloseMoreDetails = () => {
+        setOpenMoreDetails(false);
+    };
+
     return (
         <>
             <Card className={classes.root}>
@@ -61,11 +71,19 @@ export const Internship = (props: InternshipProps) => {
                     <Button size="small" color="primary" onClick={handleClickOpenSnackBar}>
                         Apply
                 </Button>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={handleClickOpenMoreDetails}>
                         Learn More
                 </Button>
                 </CardActions>
             </Card>
+            <MoreDetailsDialog
+                handleCancel={handleCloseMoreDetails}
+                details={detail}
+                moreDetails={detail}
+                name={name}
+                handleClose={handleCloseMoreDetails}
+                open={openMoreDetails}
+            />
             <ResultSnackBar open={openSnackBar} message="Applied Internship" handleClose={handleCloseSnackBar} />
 
         </>
