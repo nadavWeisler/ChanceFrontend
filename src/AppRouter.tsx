@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Login } from './Components/Login';
-import { SignUp } from './Components/Signup';
-import { PageNotFound } from './Components/PageNotFound'
-import { Profile } from './Profile'
+import { Login } from './components/Login';
+import { SignUp } from './components/Signup';
+import { PageNotFound } from './components/PageNotFound';
+import { Profile } from './components/Profile';
 import { useState } from 'react';
-import {AddProject} from './Components/AddProject'
+import { Dashboard } from './components/Dashboard/Dashboard';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,9 +37,9 @@ export const AppRouter = () => {
                     <BrowserRouter>
                         <Switch>
                             <Route path="/" component={Login} exact />
-                            <Route path="/signup" component={SignUp} exact />
+                            <Route path="/signup" component={SignUp} />
+                            <Route path="/dashboard" component={Dashboard} />
                             <Route path="/profile" component={Profile} exact />
-                            <Route path="/addproject" component={AddProject} exact />
                             <Route component={PageNotFound} />
                         </Switch>
                     </BrowserRouter>
