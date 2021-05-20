@@ -11,7 +11,7 @@ export const FetchInternships = () => {
             setTimeout(() => {
                 dispatch({
                     type: InternshipActionTypes.FETCH_INTERNSHIP_SUCCESS,
-                    payload: response.data
+                    payload: response.data,
                 })
             }, 500)
         } catch (e) {
