@@ -101,6 +101,14 @@ export const AddProject = () => {
                         />
                         <TextField
                             fullWidth
+                            id="duration"
+                            type="length"
+                            label="Duration"
+                            placeholder="Duration"
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
                             id="description"
                             type="description"
                             label="description"

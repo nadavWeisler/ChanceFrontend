@@ -54,7 +54,7 @@ export const Profile = () => {
             <Card className={classes.card}>
                 <CardHeader className={classes.header} title="Sign Up" />
                 <CardContent>
-                <Avatar alt="Remy Sharp" src="C:\Users\orain\OneDrive\מסמכים\GitHub\ChanceFrontend\src\avatar.jpeg" />
+                <Avatar alt="Remy Sharp" src="\src\avatar.jpeg" />
                     <div>
                         <Typography variant="h6" component="h6">
                             // name
