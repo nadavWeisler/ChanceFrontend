@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import pic from '../../assets/pic.jpeg'
+import { ResultSnackBar } from '../ResultSnackBar';
 
 const useStyles = makeStyles({
     root: {
@@ -20,40 +21,53 @@ const useStyles = makeStyles({
 
 export interface InternshipProps {
     name: string;
-    company:string;
+    company: string;
     imgLink: string;
     detail: string;
-    
+
 }
 
 export const Internship = (props: InternshipProps) => {
     const { company, name, imgLink, detail } = props;
     const classes = useStyles();
 
+    const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+    const handleClickOpenSnackBar = () => {
+        setOpenSnackBar(true);
+    };
+
+    const handleCloseSnackBar = () => {
+        setOpenSnackBar(false);
+    };
+
     return (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image={pic}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {name} - {company}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {detail}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Share
+        <>
+            <Card className={classes.root}>
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                        image={pic}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {name} - {company}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {detail}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary" onClick={handleClickOpenSnackBar}>
+                        Apply
                 </Button>
-                <Button size="small" color="primary">
-                    Learn More
+                    <Button size="small" color="primary">
+                        Learn More
                 </Button>
-            </CardActions>
-        </Card>
+                </CardActions>
+            </Card>
+            <ResultSnackBar open={openSnackBar} message="Applied Internship" handleClose={handleCloseSnackBar} />
+
+        </>
     );
 }
