@@ -6,6 +6,7 @@ import { SignUp } from './Components/Signup';
 import { PageNotFound } from './Components/PageNotFound'
 import { Profile } from './Profile'
 import { useState } from 'react';
+import {AddProject} from './Components/AddProject'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +39,7 @@ export const AppRouter = () => {
                             <Route path="/" component={Login} exact />
                             <Route path="/signup" component={SignUp} exact />
                             <Route path="/profile" component={Profile} exact />
+                            <Route path="/addproject" component={AddProject} exact />
                             <Route component={PageNotFound} />
                         </Switch>
                     </BrowserRouter>
