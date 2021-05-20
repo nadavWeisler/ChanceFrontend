@@ -7,7 +7,8 @@ import AppMenu from './components/AppMenu';
 
 import './App.css';
 import { AppRouter } from './AppRouter';
-
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 const drawerWidth = 240
 
@@ -38,22 +39,24 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles()
   return (
-    <div className={clsx('App', classes.root)}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <AppMenu />
-      </Drawer>
-      <main className={classes.content}>
-        <Container maxWidth="lg" className={classes.container}>
-          <AppRouter/>
-        </Container>
-      </main>
-    </div>
+    <Provider store={store}>
+      <div className={clsx('App', classes.root)}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <AppMenu />
+        </Drawer>
+        <main className={classes.content}>
+          <Container maxWidth="lg" className={classes.container}>
+            <AppRouter />
+          </Container>
+        </main>
+      </div>
+    </Provider>
   );
 }
 
