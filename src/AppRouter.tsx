@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Login } from './Components/Login';
-import { SignUp } from './Components/Signup';
-import { PageNotFound } from './Components/PageNotFound'
-import { Profile } from './Profile'
+import { Login } from './components/Login';
+import { SignUp } from './components/Signup';
+import { PageNotFound } from './components/PageNotFound';
+import { Profile } from './components/Profile';
 import { useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 

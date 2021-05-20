@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { InternshipProps } from './option.type';
+import pic from '../../assets/pic.jpeg'
 
 const useStyles = makeStyles({
     root: {
@@ -18,8 +18,16 @@ const useStyles = makeStyles({
     },
 });
 
+export interface InternshipProps {
+    name: string;
+    company:string;
+    imgLink: string;
+    detail: string;
+    
+}
+
 export const Internship = (props: InternshipProps) => {
-    const { company, name, imgLink } = props;
+    const { company, name, imgLink, detail } = props;
     const classes = useStyles();
 
     return (
@@ -27,16 +35,14 @@ export const Internship = (props: InternshipProps) => {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={imgLink}
-                    title="Contemplative Reptile"
+                    image={pic}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {name}
+                        {name} - {company}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                        {detail}
                     </Typography>
                 </CardContent>
             </CardActionArea>
