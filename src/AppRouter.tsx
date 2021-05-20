@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Login } from './components/Login';
-import { SignUp } from './components/Signup';
-import { PageNotFound } from './components/PageNotFound'
+import { Login } from './Components/Login';
+import { SignUp } from './Components/Signup';
+import { PageNotFound } from './Components/PageNotFound'
+import { Profile } from './Profile'
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,13 +33,14 @@ export const AppRouter = () => {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                        <BrowserRouter>
-                            <Switch>
-                                <Route path="/" component={Login} exact />
-                                <Route path="/signup" component={SignUp} exact/>
-                                <Route component={PageNotFound} />
-                            </Switch>
-                        </BrowserRouter>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route path="/" component={Login} exact />
+                            <Route path="/signup" component={SignUp} exact />
+                            <Route path="/profile" component={Profile} exact />
+                            <Route component={PageNotFound} />
+                        </Switch>
+                    </BrowserRouter>
                 </Container>
             </main>
         </div>
