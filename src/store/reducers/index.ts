@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
-import { experimentReducer } from "./experimentReducer";
+import { internshipReducer } from "./internshipReducer";
 import {userReducer} from "./userReducer";
 
 
 export const rootReducer = combineReducers({
     user: userReducer,
-    experiment: experimentReducer
+    internships: internshipReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>
