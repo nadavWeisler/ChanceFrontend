@@ -1,9 +1,9 @@
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Drawer from '@material-ui/core/Drawer'
-import Container from '@material-ui/core/Container'
-import AppMenu from './Components/AppMenu'
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import Container from '@material-ui/core/Container';
+import AppMenu from './components/AppMenu';
 
 import './App.css';
 import { AppRouter } from './AppRouter';
