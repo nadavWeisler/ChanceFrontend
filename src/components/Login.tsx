@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useActions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,8 +48,16 @@ export const Login = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
+  const { users } = useTypedSelector(state => state.user)
+  const { fetchUsers } = useActions()
+
   const handleLogin = () => {
-    console.log("Login");
+    fetchUsers(email, password);
+    if (users.length <= 0) {
+      alert("Wrong password");
+    } else {
+      alert("TO DASHBOARD");
+    }
   };
 
   const handleUsernameChange = (event: any) => {
