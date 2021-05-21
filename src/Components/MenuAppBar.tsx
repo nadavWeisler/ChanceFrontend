@@ -10,7 +10,6 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import CreateIcon from '@material-ui/icons/Create';
 import { LoginDialog } from "./LoginDialog";
 import { SignUpDialog } from "./SignupDialog";
-import Profile from "./Profile";
 import ProfileDialog from "./ProfileDialog";
 import sam from "./../assets/sam.jpeg"
 import AddProject from "./AddProject";

@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Login } from './components/Login';
 import { SignUp } from './components/Signup';
 import { PageNotFound } from './components/PageNotFound';
-import { Profile } from './components/Profile';
 import React, { useEffect, useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { AddProject } from './components/AddProject'
@@ -53,7 +52,6 @@ export const AppRouter = () => {
                             <Route path="/" component={Home} exact />
                             <Route path="/dashboard" component={Dashboard} />
                             <Route path="/signup" component={SignUp} />
-                            <Route path="/profile" component={Profile} exact />
                             <Route path="/companyprofile" component={CompanyProfile} exact />
                             <Route path="/addproject" component={AddProject} exact />
                             <Route component={PageNotFound} />
