@@ -38,9 +38,8 @@ export const AppRouter = () => {
                 <Container maxWidth="lg" className={classes.container}>
                     <BrowserRouter>
                         <Switch>
-                            <Route path="/" component={Login} exact />
+                            <Route path="/" component={Dashboard} exact />
                             <Route path="/signup" component={SignUp} />
-                            <Route path="/dashboard" component={Dashboard} />
                             <Route path="/profile" component={Profile} exact />
                             <Route path="/companyprofile" component={CompanyProfile} exact />
                             <Route path="/addproject" component={AddProject} exact />
