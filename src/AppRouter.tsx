@@ -11,6 +11,7 @@ import { AddProject } from './components/AddProject'
 import CompanyProfile from './components/CompanyProfile';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { MenuAppBar } from './components/MenuAppBar';
+import { Home } from './components/home';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,7 +50,8 @@ export const AppRouter = () => {
                 <Container maxWidth="lg" className={classes.container}>
                     <BrowserRouter>
                         <Switch>
-                            <Route path="/" component={Dashboard} exact />
+                            <Route path="/" component={Home} exact />
+                            <Route path="/dashboard" component={Dashboard} />
                             <Route path="/signup" component={SignUp} />
                             <Route path="/profile" component={Profile} exact />
                             <Route path="/companyprofile" component={CompanyProfile} exact />

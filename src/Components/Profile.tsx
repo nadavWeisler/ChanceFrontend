@@ -9,7 +9,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { Typography } from '@material-ui/core';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
-import { GetUser } from '../store/actions/user';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -37,12 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Profile = () => {
     const classes = useStyles();
 
-    const { email, intern_candidate, intern_complete, intern_current, rank, user_name } = useTypedSelector(state => state.getUser)
-    const { FetchInternships } = useActions()
+    const { email, rank, user_name } = useTypedSelector(state => state.getUser)
+    const { GetUser } = useActions()
 
     useEffect(() => {
         if (localStorage.getItem("user_id")) {
             GetUser(localStorage.getItem("user_id") ?? "");
+            console.log(localStorage.getItem("user_id"));
         }
     }, [localStorage.getItem("user_id")]);
     return (
@@ -53,16 +53,15 @@ export const Profile = () => {
                     <Avatar alt="Remy Sharp" src="\src\avatar.jpeg" />
                     <div>
                         <Typography variant="h6" component="h6">
-                            // name
+                            {user_name}
                         </Typography>
                         <Typography variant="h6" component="h6">
-                            // email
+                            {email}
                         </Typography>
                         <Typography variant="h6" component="h6">
-                            points : // get_points
+                            points : {rank}
                         </Typography>
                     </div>
-
                 </CardContent>
                 <CardActions>
                 </CardActions>

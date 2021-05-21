@@ -12,9 +12,19 @@ export const Dashboard = () => {
     const { internships } = useTypedSelector(state => state.internships)
     const { FetchInternships } = useActions()
     const [filterString, setFilterString] = useState<string>('');
+    const [filteredList, setFilteredList] = useState<Array<Internship>>([]);
+
+    const getFliterOptions = (): Array<Internship> => {
+        return internships.filter(filterStr => {
+            return filterStr.name.includes(filterString.toString()) ||
+                filterStr.details.includes(filterString.toString())
+        }
+        );
+    }
 
     useEffect(() => {
         FetchInternships();
+        setFilteredList(getFliterOptions());
     }, []);
 
     const onFilter = (value: string) => {
