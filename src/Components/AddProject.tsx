@@ -1,8 +1,8 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Card from '@material-ui/core/Card';
-import { Avatar, Checkbox } from '@material-ui/core';
+import { Avatar, Checkbox, duration } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -44,24 +44,24 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type State =
     {
-        project_name: string
-        hard: boolean
-        medium: boolean
-        easy: boolean
-        date: string
-        image: string
-        topics: Array<string>
+        projectName: string
+        duration: number
+        difculty: number
+        aplydate: string
+        submitdate:string
+        topic:string
+        tags: string
         description: string
     };
 
 const initialState: State = {
-    project_name: 'demo',
-    hard: false,
-    medium: false,
-    easy: false,
-    date: '01/01/2000',
-    image: 'path',
-    topics: [],
+    projectName: 'demo',
+    duration: 0,
+    difculty: 0,
+    aplydate: '01/01/2000',
+    submitdate: '01/01/2000',
+    topic: '',
+    tags: '',
     description: ''
 };
 
@@ -69,6 +69,49 @@ const AvailableThemes = ["hard", "medium", "easy"];
 
 export const AddProject = () => {
     const classes = useStyles();
+    const [projectName, setName] = useState<string>("")
+    const[duration, setDuration] = useState<number>(0)
+    const [aplydate, setAdate] = useState<string>("")
+    const [submitdate, setSdate] = useState<string>("")
+    const [dificulty, setDificulty] = useState<number>(0)
+    const [topic, setTopic] = useState<string>("")
+    const [tags, setTag] = useState<string>("")
+    const [description, setDescription] = useState<string>("")
+
+    const handleNameChange = (event: any) => {
+        setName(event.target.value)
+    };
+
+    const handleAdate = (event: any) => {
+        setAdate(event.target.value)
+    };
+
+    const handleSdate = (event: any) => {
+        setSdate(event.target.value)
+    };
+
+    const handleDurationChange = (event: any) => {
+        setDuration(event.target.value)
+    };
+
+    const handleDificultyChange = (event: any) => {
+        setDificulty(event.target.value)
+    };
+
+    const handleTopic = (event: any) =>
+    {
+        setTopic(event.target.value)
+    };
+
+    const handleTagChange = (event: any) => {
+        setTag(event.target.value)
+    };
+
+    const handleDescription = (event: any) =>
+    {
+        setDescription(event.target.value)
+    }
+
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <Card className={classes.card}>
@@ -82,6 +125,7 @@ export const AddProject = () => {
                             label="Name"
                             placeholder="Title"
                             margin="normal"
+                            onChange={handleNameChange}
                         />
                         <TextField
                             fullWidth
@@ -90,6 +134,7 @@ export const AddProject = () => {
                             label="last apllication"
                             defaultValue="2017-05-24"
                             margin="normal"
+                            onChange={handleAdate}
                         />
                         <TextField
                             fullWidth
@@ -98,6 +143,7 @@ export const AddProject = () => {
                             label="due date"
                             defaultValue="2017-05-24"
                             margin="normal"
+                            onChange={handleSdate}
                         />
                         <TextField
                             fullWidth
@@ -106,6 +152,7 @@ export const AddProject = () => {
                             label="Duration"
                             placeholder="Duration"
                             margin="normal"
+                            onChange={handleDurationChange}
                         />
                         <TextField
                             fullWidth
@@ -114,6 +161,7 @@ export const AddProject = () => {
                             label="description"
                             placeholder=""
                             margin="normal"
+                            onChange={handleDescription}
                         />
                         <TextField
                             fullWidth
@@ -122,6 +170,7 @@ export const AddProject = () => {
                             label="topic"
                             placeholder="machin learning"
                             margin="normal"
+                            onChange={handleTopic}
                         />
                         <TextField
                             fullWidth
@@ -130,6 +179,7 @@ export const AddProject = () => {
                             label="tags"
                             placeholder="#python"
                             margin="normal"
+                            onChange={handleTagChange}
                         />
                         <FormControl fullWidth component="fieldset" margin="normal">
                             <FormLabel component="legend" focused={false}>
@@ -140,6 +190,7 @@ export const AddProject = () => {
                                         key={theme}
                                         value={theme}
                                         label={theme}
+                                        onChange={handleDificultyChange}
                                         control={<Checkbox
                                             value="checkedA"
                                             inputProps={{ 'aria-label': 'Checkbox A' }}
