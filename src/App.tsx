@@ -9,8 +9,9 @@ import './App.css';
 import { AppRouter } from './AppRouter';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MenuAppBar } from './components/MenuAppBar';
+import { useTypedSelector } from './hooks/useTypedSelector';
 
 const drawerWidth = 240
 
@@ -41,18 +42,10 @@ const useStyles = makeStyles(theme => ({
 
 const App = () => {
   const classes = useStyles()
-  const [authoraized] = useState<boolean>(false);
 
   return (
     <Provider store={store}>
-      <MenuAppBar authorized={authoraized} />
-      <div className={clsx('App', classes.root)}>
-        <main className={classes.content}>
-          <Container maxWidth="lg" className={classes.container}>
-            <AppRouter />
-          </Container>
-        </main>
-      </div>
+      <AppRouter />
     </Provider>
   );
 }

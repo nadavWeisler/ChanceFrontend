@@ -5,10 +5,12 @@ import { Login } from './components/Login';
 import { SignUp } from './components/Signup';
 import { PageNotFound } from './components/PageNotFound';
 import { Profile } from './components/Profile';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
-import {AddProject} from './components/AddProject'
+import { AddProject } from './components/AddProject'
 import CompanyProfile from './components/CompanyProfile';
+import { useTypedSelector } from './hooks/useTypedSelector';
+import { MenuAppBar } from './components/MenuAppBar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,11 +30,20 @@ const useStyles = makeStyles((theme) => ({
 
 export const AppRouter = () => {
     const classes = useStyles();
-    const [Authorized, setAuthorized] = useState<boolean>(false);
+    const [authoraized, setAuthorized] = useState<boolean>(false);
+    const { access_token } = useTypedSelector(state => state.login)
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token')) {
+            setAuthorized(true);
+        } else {
+            setAuthorized(false);
+        }
+    }, [localStorage.getItem('access_token')])
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <MenuAppBar authorized={authoraized} />
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
