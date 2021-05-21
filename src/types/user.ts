@@ -42,7 +42,7 @@ interface LoginUserAction {
 }
 interface LoginUserActionSuccess {
     type: UserActionTypes.LOGIN_USERS_SUCCESS;
-    payload: any[]
+    payload: string;
 }
 interface LoginUsersErrorAction {
     type: UserActionTypes.LOGIN_USERS_ERROR;

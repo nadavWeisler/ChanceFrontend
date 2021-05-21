@@ -12,6 +12,7 @@ export const LoginUser = (email: string, password: string) => {
             fd.append("password", password);
             const response = await axios.post('http://127.0.0.1:4500/api/auth/login',
                 fd, config);
+            console.log(response);
             setTimeout(() => {
                 dispatch({ type: UserActionTypes.LOGIN_USERS_SUCCESS, payload: response.data })
             }, 500)
