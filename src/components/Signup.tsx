@@ -2,7 +2,6 @@ import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { Redirect } from 'react-router';
-import { Login } from './Login';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import { Checkbox } from '@material-ui/core';
@@ -67,12 +66,12 @@ const initialState: State = {
 export const SignUp = () => {
     const classes = useStyles();
     const handleSignUp = () => {
-        <Redirect
-            to={{
-                pathname: "/Login",
-                state: { Login }
-            }}
-        />
+        // <Redirect
+        //     to={{
+        //         pathname: "/Login",
+        //         s//tate: { Login }
+        //     }}
+        // />
     };
     return (
         <form className={classes.container} noValidate autoComplete="off">

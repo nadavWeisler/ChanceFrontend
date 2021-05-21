@@ -38,15 +38,11 @@ export const LoginDialog = (props: LoginDialogProps) => {
     const [password, setPassword] = useState<string>("")
 
     const { users } = useTypedSelector(state => state.user)
-    const { fetchUsers } = useActions()
+    const { LoginUser } = useActions()
 
     const handleLogin = () => {
-        fetchUsers(email, password);
-        if (users.length <= 0) {
-            alert("Wrong password");
-        } else {
-            alert("TO DASHBOARD");
-        }
+        LoginUser(email, password);
+        console.log(users);
     };
 
     const handleUsernameChange = (event: any) => {
@@ -68,10 +64,10 @@ export const LoginDialog = (props: LoginDialogProps) => {
                         <div>
                             <TextField
                                 fullWidth
-                                id="username"
+                                id="email"
                                 type="email"
-                                label="Username"
-                                placeholder="Username"
+                                label="Usernaemailme"
+                                placeholder="email"
                                 margin="normal"
                                 onChange={handleUsernameChange}
                             />
@@ -92,7 +88,7 @@ export const LoginDialog = (props: LoginDialogProps) => {
                             size="large"
                             color="secondary"
                             className={classes.loginBtn}
-                            href="Dashboard"
+                            // href="Dashboard"
                             onClick={handleLogin}
                         >
                             Submit
