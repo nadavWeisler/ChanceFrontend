@@ -88,10 +88,6 @@ export const SignUp = () => {
         setRePassword(event.target.value)
     };
 
-    const handleAdmin = (event: any) => {
-        setAdmin(event.target.value)
-    };
-
     const handleChange = (event: any) =>
     {
         setAdmin(event.target.value)
