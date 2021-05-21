@@ -37,13 +37,15 @@ export const LoginDialog = (props: LoginDialogProps) => {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
-    const { access_token } = useTypedSelector(state => state.login)
+    const { access_token, user_id } = useTypedSelector(state => state.login)
     const { LoginUser } = useActions()
 
     const handleLogin = () => {
         LoginUser(email, password);
-        if(access_token) {
+
+        if (access_token) {
             localStorage.setItem('access_token', access_token);
+            localStorage.setItem('user_id', user_id);
             onDialogClose();
         }
     };
