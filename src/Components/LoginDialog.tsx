@@ -66,7 +66,7 @@ export const LoginDialog = (props: LoginDialogProps) => {
                                 fullWidth
                                 id="email"
                                 type="email"
-                                label="Usernaemailme"
+                                label="email"
                                 placeholder="email"
                                 margin="normal"
                                 onChange={handleUsernameChange}

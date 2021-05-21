@@ -1,16 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
+import { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import { Redirect } from 'react-router';
-import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import { Checkbox, Dialog } from '@material-ui/core';
+import { TextField, FormControl, Card, Dialog, FormLabel, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,9 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: 'center',
             background: '#212121',
             color: '#fff'
-        },
-        card: {
-            marginTop: theme.spacing(10)
         }
     })
 );
@@ -42,13 +33,38 @@ export interface SignUpDialogProps {
 
 export const SignUpDialog = (props: SignUpDialogProps) => {
     const classes = useStyles();
-    const {openDialog, onCloseDialog} = props;
+    const { openDialog, onCloseDialog } = props;
+
+    const [name, setName] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [repassword, setRePassword] = useState<string>("")
+    const [admin, setAdmin] = useState<string>("")
+
+    const handleNameChange = (event: any) => {
+        setName(event.target.value)
+    };
+
+    const handleMailChange = (event: any) => {
+        setEmail(event.target.value)
+    };
+
+    const handlePasswordChange = (event: any) => {
+        setPassword(event.target.value)
+    };
+
+    const handlerePasswordChange = (event: any) => {
+        setRePassword(event.target.value)
+    };
+
+    const handleChange = (event: any) => {
+        setAdmin(event.target.value)
+    }
 
     return (
-        <Dialog open={openDialog}>
+        <Dialog open={openDialog} onClose={onCloseDialog}>
             <form className={classes.container} noValidate autoComplete="off">
-                <Card className={classes.card}>
-                    <CardHeader className={classes.header} title="Sign Up" />
+                <Card>
                     <CardContent>
                         <div>
                             <TextField
@@ -58,14 +74,7 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="Name"
                                 placeholder="Name"
                                 margin="normal"
-                            />
-                            <TextField
-                                fullWidth
-                                id="username"
-                                type="email"
-                                label="Username"
-                                placeholder="Username"
-                                margin="normal"
+                                onChange={handleNameChange}
                             />
                             <TextField
                                 fullWidth
@@ -74,6 +83,7 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="email"
                                 placeholder="email"
                                 margin="normal"
+                                onChange={handleMailChange}
                             />
                             <TextField
                                 fullWidth
@@ -82,6 +92,7 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="Password"
                                 placeholder="Password"
                                 margin="normal"
+                                onChange={handlePasswordChange}
                             />
                             <TextField
                                 fullWidth
@@ -90,28 +101,26 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="Validate Password"
                                 placeholder="Validate Password"
                                 margin="normal"
-                            />
-                            <Typography variant="h6" component="h6">
-                                chek if admin
-                        </Typography>
-                            <Checkbox
-                                value="Admin"
-                                inputProps={{ 'aria-label': 'Checkbox A' }}
+                                onChange={handlerePasswordChange}
                             />
                         </div>
+                        <FormControl component="fieldset">
+                            <FormLabel component="legend">user type</FormLabel>
+                            <RadioGroup aria-label="user type" name="user typer1" value={admin} onChange={handleChange}>
+                                <FormControlLabel value="STUDENT" control={<Radio />} label="student" />
+                                <FormControlLabel value="COMAPNY" control={<Radio />} label="company" />
+                            </RadioGroup>
+                        </FormControl>
                     </CardContent>
                     <CardActions>
-                        <Link to="/">
-                            <Button
-                                variant="contained"
-                                size="large"
-                                color="secondary"
-                                className={classes.signupBtn}
-                                // onClick={handleSignUp}
-                                disabled={false}>
-                                signup
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            color="secondary"
+                            className={classes.signupBtn}
+                            disabled={false}>
+                            signup
+                        </Button>
                     </CardActions>
                 </Card>
             </form>

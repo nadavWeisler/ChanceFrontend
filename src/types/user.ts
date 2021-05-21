@@ -15,6 +15,9 @@ export enum UserActionTypes {
     LOGIN_USERS = 'LOGIN_USERS',
     LOGIN_USERS_SUCCESS = 'LOGIN_USERS_SUCCESS',
     LOGIN_USERS_ERROR = 'FETCH_USERS_FETCH_USERS_ERROR',
+    SIGNUP_USERS = 'SIGNUP_USERS',
+    SIGNUP_USERS_SUCCESS = 'SIGNUP_USERS_SUCCESS',
+    SIGNUP_USERS_ERROR = 'SIGNUP_USERS_ERROR',
 }
 
 interface FetchUsersAction {
@@ -46,3 +49,18 @@ interface LoginUsersErrorAction {
     payload: string;
 }
 export type LoginAction = LoginUserAction | LoginUsersErrorAction | LoginUserActionSuccess
+
+interface SignupUserAction {
+    type: UserActionTypes.SIGNUP_USERS;
+    email: string;
+    password: string;
+}
+interface SignupUserActionSuccess {
+    type: UserActionTypes.SIGNUP_USERS_SUCCESS;
+    payload: any[]
+}
+interface SignupUsersErrorAction {
+    type: UserActionTypes.SIGNUP_USERS_ERROR;
+    payload: string;
+}
+export type SignupAction = SignupUserAction | SignupUsersErrorAction | SignupUserActionSuccess
