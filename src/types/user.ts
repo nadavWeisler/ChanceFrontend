@@ -6,6 +6,16 @@ export interface UserState {
 
 export interface LoginState {
     access_token: string;
+    user_id: string;
+}
+
+export interface GetUserState {
+    user_name: string;
+    email: string;
+    rank: number;
+    intern_candidate: Array<string>;
+    intern_complete: Array<string>;
+    intern_current: Array<string>;
 }
 
 export enum UserActionTypes {
@@ -18,6 +28,9 @@ export enum UserActionTypes {
     SIGNUP_USERS = 'SIGNUP_USERS',
     SIGNUP_USERS_SUCCESS = 'SIGNUP_USERS_SUCCESS',
     SIGNUP_USERS_ERROR = 'SIGNUP_USERS_ERROR',
+    GET_USER_USERS = 'GET_USER_USERS',
+    GET_USER_USERS_SUCCESS = 'GET_USER_USERS_SUCCESS',
+    GET_USER_ERROR = 'GET_USER_ERROR',
 }
 
 interface FetchUsersAction {
@@ -42,7 +55,7 @@ interface LoginUserAction {
 }
 interface LoginUserActionSuccess {
     type: UserActionTypes.LOGIN_USERS_SUCCESS;
-    payload: any[]
+    payload: any;
 }
 interface LoginUsersErrorAction {
     type: UserActionTypes.LOGIN_USERS_ERROR;
@@ -64,3 +77,19 @@ interface SignupUsersErrorAction {
     payload: string;
 }
 export type SignupAction = SignupUserAction | SignupUsersErrorAction | SignupUserActionSuccess
+
+interface GetUserStartAction {
+    type: UserActionTypes.GET_USER_USERS;
+    user_id: string;
+}
+
+interface GetUserActionSuccess {
+    type: UserActionTypes.GET_USER_USERS_SUCCESS;
+    payload: GetUserState
+}
+interface GetUserErrorAction {
+    type: UserActionTypes.GET_USER_ERROR;
+    payload: string;
+}
+
+export type GetUserAction = GetUserStartAction | GetUserActionSuccess | GetUserErrorAction

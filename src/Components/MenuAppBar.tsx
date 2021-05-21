@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { IconButton, Badge, Button, AppBar, Toolbar, MenuItem, Menu } from '@material-ui/core';
+import { IconButton, Badge, Button, AppBar, Toolbar, MenuItem, Menu, Link } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from "clsx";
@@ -10,6 +10,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import CreateIcon from '@material-ui/icons/Create';
 import { LoginDialog } from "./LoginDialog";
 import { SignUpDialog } from "./SignupDialog";
+import Profile from "./Profile";
 
 const drawerWidth = 240;
 
@@ -125,6 +126,11 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const signoutUser = () => {
+    localStorage.removeItem("access_token");
+    window.location.reload(false);
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -139,103 +145,103 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
       {
         authorized &&
         <>
-          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-          <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
+          <MenuItem><a href={'/Profile'}>Profile</a></MenuItem>
+          <MenuItem onClick={() => { signoutUser() }}>Sign out</MenuItem>
         </>
       }
-      {
-        !authorized &&
-        <>
-          <MenuItem onClick={() => { setOpenLoginDialog(true) }}>Log in</MenuItem>
-          <MenuItem onClick={() => { setOpenSignupDialog(true) }}>Sign up</MenuItem>
-        </>
-      }
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
-          <ViewListIcon />
-        </IconButton>
-        <p>Dashboard</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-
-  const [open] = React.useState(false);
-
-  return (
+{
+  !authorized &&
     <>
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <Button className={classes.title} href="/">
-            Chance
-          </Button>
-          <div className={classes.sectionDesktop}>
-            <IconButton color="inherit" href="AddProject">
-              <CreateIcon />
-            </IconButton>
-            <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
-              <ViewListIcon />
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} onDialogSubmit={handleLoginDialog} />
-      <SignUpDialog openDialog={openSignupDialog} onCloseDialog={handleSignupDialog} />
-      {renderMobileMenu}
-      {renderMenu}
+      <MenuItem onClick={() => { setOpenLoginDialog(true) }}>Log in</MenuItem>
+      <MenuItem onClick={() => { setOpenSignupDialog(true) }}>Sign up</MenuItem>
     </>
+}
+    </Menu >
   );
+
+const mobileMenuId = 'primary-search-account-menu-mobile';
+const renderMobileMenu = (
+  <Menu
+    anchorEl={mobileMoreAnchorEl}
+    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    id={mobileMenuId}
+    keepMounted
+    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    open={isMobileMenuOpen}
+    onClose={handleMobileMenuClose}
+  >
+    <MenuItem>
+      <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
+        <ViewListIcon />
+      </IconButton>
+      <p>Dashboard</p>
+    </MenuItem>
+    <MenuItem>
+      <IconButton aria-label="show 11 new notifications" color="inherit">
+        <Badge badgeContent={11} color="secondary">
+          <NotificationsIcon />
+        </Badge>
+      </IconButton>
+      <p>Notifications</p>
+    </MenuItem>
+    <MenuItem onClick={handleProfileMenuOpen}>
+      <IconButton
+        aria-label="account of current user"
+        aria-controls="primary-search-account-menu"
+        aria-haspopup="true"
+        color="inherit"
+      >
+        <AccountCircle />
+      </IconButton>
+      <p>Profile</p>
+    </MenuItem>
+  </Menu>
+);
+
+const [open] = React.useState(false);
+
+return (
+  <>
+    <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <Toolbar className={classes.toolbar}>
+        <Button className={classes.title} href="/">
+          Chance
+          </Button>
+        <div className={classes.sectionDesktop}>
+          <IconButton color="inherit" href="AddProject">
+            <CreateIcon />
+          </IconButton>
+          <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
+            <ViewListIcon />
+          </IconButton>
+          <IconButton
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+        </div>
+        <div className={classes.sectionMobile}>
+          <IconButton
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </div>
+      </Toolbar>
+    </AppBar>
+    <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} onDialogSubmit={handleLoginDialog} />
+    <SignUpDialog openDialog={openSignupDialog} onCloseDialog={handleSignupDialog} />
+    {renderMobileMenu}
+    {renderMenu}
+  </>
+);
 }
