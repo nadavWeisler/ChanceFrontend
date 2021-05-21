@@ -34,16 +34,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-//state type
-
-type State = {
-  username: string
-  password: string
-  isButtonDisabled: boolean
-  helperText: string
-  isError: boolean
-};
-
 export const Login = () => {
   const classes = useStyles();
   const [email, setEmail] = useState<string>("")

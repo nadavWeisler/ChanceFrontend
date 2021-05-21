@@ -7,10 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import pic from '../../assets/pic.jpeg'
 import { ResultSnackBar } from '../ResultSnackBar';
 import { MoreDetailsDialog } from './MoreDetailsDialogProps';
-import { CardHeader } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -57,7 +55,7 @@ export const SingleInternship = (props: InternshipProps) => {
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={pic}
+                        image={imgLink}
                     />
                     <CardContent>
                         <Typography variant="body2" color="textPrimary" component="p">

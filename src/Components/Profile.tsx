@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import { Typography } from '@material-ui/core';
-import axios from 'axios';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useActions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,34 +35,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 //state type
 
-type State =
-    {
-        name: string
-        email: string
-        points: number
-        image: string
-    };
+    const { email, rank, user_name } = useTypedSelector(state => state.getUser)
+    const { GetUser } = useActions()
 
-const initialState: State = {
-    name: 'test',
-    email: 'tset@com',
-    points: 0,
-    image: 'path'
-};
-
-
-export const Profile = async (user_id:string) => {
-    const [email, setEmail] = useState<string>("")
-    const [name, setName] = useState<string>("")
-    const[points, setPoints] = useState<number>(0)
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-
-    let fd = new FormData();
-    fd.append("user_id", user_id);
-    const response = await axios.post('http://127.0.0.1:4500/api/personalSpace/student',
-        fd, config);
-
-    const classes = useStyles();
+    useEffect(() => {
+        if (localStorage.getItem("user_id")) {
+            GetUser(localStorage.getItem("user_id") ?? "");
+            console.log(localStorage.getItem("user_id"));
+        }
+    }, [localStorage.getItem("user_id")]);
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <Card className={classes.card}>
@@ -70,16 +52,15 @@ export const Profile = async (user_id:string) => {
                 <Avatar alt="Remy Sharp" src="\src\avatar.jpeg" />
                     <div>
                         <Typography variant="h6" component="h6">
-                            response[]
+                            {user_name}
                         </Typography>
                         <Typography variant="h6" component="h6">
-                            // email
+                            {email}
                         </Typography>
                         <Typography variant="h6" component="h6">
-                            points : // get_points
+                            points : {rank}
                         </Typography>
                     </div>
-
                 </CardContent>
                 <CardActions>
                 </CardActions>
