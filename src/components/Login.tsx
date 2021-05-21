@@ -50,10 +50,10 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("")
 
   const { users } = useTypedSelector(state => state.user)
-  const { fetchUsers } = useActions()
+  const { LoginUser } = useActions()
 
   const handleLogin = () => {
-    fetchUsers(email, password);
+    LoginUser(email, password);
     if (users.length <= 0) {
       alert("Wrong password");
     } else {

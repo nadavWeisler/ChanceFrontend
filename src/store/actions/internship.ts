@@ -3,11 +3,12 @@ import axios from "axios";
 import { GET_INTERNSHIP_DATA_LINK } from "../../utils/links";
 import { InternshipAction, InternshipActionTypes } from "../../types/internship";
 
-export const FetchInternships = () => {
+export const FetchInternships = (token: string = "") => {
     return async (dispatch: Dispatch<InternshipAction>) => {
         try {
             dispatch({ type: InternshipActionTypes.FETCH_INTERNSHIP })
-            const response = await axios.get(GET_INTERNSHIP_DATA_LINK)
+            const response = await axios.get(GET_INTERNSHIP_DATA_LINK,
+                { headers: { "Authorization": `Bearer ${token}` }})
             setTimeout(() => {
                 dispatch({
                     type: InternshipActionTypes.FETCH_INTERNSHIP_SUCCESS,

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { IconButton, Badge, Button, AppBar, Toolbar, MenuItem, Menu } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,8 +9,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import CreateIcon from '@material-ui/icons/Create';
 import { LoginDialog } from "./LoginDialog";
-// import { LoginDialog } from "./views/LoginDialog";
-// import { SignUpDialog } from "./views/SignUpDialog";
+import { SignUpDialog } from "./SignupDialog";
 
 const drawerWidth = 240;
 
@@ -103,10 +102,10 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
     setOpenLoginDialog(!openLoginDialog);
   }
 
-  const [openSignUpDialog, setOpenSignUpDialog] = React.useState<boolean>(false)
+  const [openSignupDialog, setOpenSignupDialog] = useState<boolean>(false)
 
-  const handleSignUpDialog = () => {
-    setOpenSignUpDialog(!openSignUpDialog);
+  const handleSignupDialog = () => {
+    setOpenSignupDialog(!openSignupDialog);
   }
 
   const handleProfileMenuOpen = (event: any) => {
@@ -148,7 +147,7 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
         !authorized &&
         <>
           <MenuItem onClick={() => { setOpenLoginDialog(true) }}>Log in</MenuItem>
-          <MenuItem onClick={() => { setOpenSignUpDialog(true) }}>Sign up</MenuItem>
+          <MenuItem onClick={() => { setOpenSignupDialog(true) }}>Sign up</MenuItem>
         </>
       }
     </Menu>
@@ -203,7 +202,7 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
             Chance
           </Button>
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit" href="Create">
+            <IconButton color="inherit" href="AddProject">
               <CreateIcon />
             </IconButton>
             <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
@@ -233,7 +232,8 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
           </div>
         </Toolbar>
       </AppBar>
-      <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} onDialogSubmit={handleLoginDialog}/>
+      <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} onDialogSubmit={handleLoginDialog} />
+      <SignUpDialog openDialog={openSignupDialog} onCloseDialog={handleSignupDialog} />
       {renderMobileMenu}
       {renderMenu}
     </>
