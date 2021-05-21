@@ -8,6 +8,7 @@ import { Profile } from './components/Profile';
 import { useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import {AddProject} from './components/AddProject'
+import CompanyProfile from './components/CompanyProfile';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,6 +42,7 @@ export const AppRouter = () => {
                             <Route path="/signup" component={SignUp} />
                             <Route path="/dashboard" component={Dashboard} />
                             <Route path="/profile" component={Profile} exact />
+                            <Route path="/companyprofile" component={CompanyProfile} exact />
                             <Route path="/addproject" component={AddProject} exact />
                             <Route component={PageNotFound} />
                         </Switch>
