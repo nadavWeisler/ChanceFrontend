@@ -1,4 +1,4 @@
-import { LoginAction, SignupAction, UserAction, UserActionTypes } from "../../types/user";
+import { GetUserAction, LoginAction, SignupAction, UserActionTypes } from "../../types/user";
 import { Dispatch } from "redux";
 import axios from "axios";
 
@@ -12,7 +12,6 @@ export const LoginUser = (email: string, password: string) => {
             fd.append("password", password);
             const response = await axios.post('http://127.0.0.1:4500/api/auth/login',
                 fd, config);
-            console.log(response);
             setTimeout(() => {
                 dispatch({ type: UserActionTypes.LOGIN_USERS_SUCCESS, payload: response.data })
             }, 500)
@@ -45,6 +44,27 @@ export const SignupUser = (email: string, password: string, userType: string, na
         } catch (e) {
             dispatch({
                 type: UserActionTypes.SIGNUP_USERS_ERROR,
+                payload: 'Fetch user error'
+            })
+        }
+    }
+}
+
+export const GetUser = (userId: string) => {
+    return async (dispatch: Dispatch<GetUserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.GET_USER_USERS, user_id: userId })
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+            let fd = new FormData();
+            fd.append("user_id", userId);
+            const response = await axios.post('http://127.0.0.1:4500/api/personalSpace/student',
+                fd, config);
+            setTimeout(() => {
+                dispatch({ type: UserActionTypes.GET_USER_USERS_SUCCESS, payload: response.data })
+            }, 500)
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.GET_USER_ERROR,
                 payload: 'Fetch user error'
             })
         }
