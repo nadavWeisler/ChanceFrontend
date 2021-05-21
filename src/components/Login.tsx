@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     card: {
       marginTop: theme.spacing(10)
     }
+    
   })
 );
 
@@ -69,7 +70,7 @@ export const Login = () => {
   };
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={"chance"} noValidate autoComplete="off">
       <Card className={classes.card}>
         <CardHeader className={classes.header} title="Login to chance" />
         <CardContent>

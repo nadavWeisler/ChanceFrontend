@@ -47,14 +47,14 @@ const initialState: State = {
 };
 
 
-export const Profile = () => {
+export const CompanyProfile = () => {
     const classes = useStyles();
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <Card className={classes.card}>
-                <CardHeader className={classes.header} title="Sign Up" />
+                <CardHeader className={classes.header} title="Company" />
                 <CardContent>
-                <Avatar alt="Remy Sharp" src="\src\avatar.jpeg" />
+                <Avatar alt="Remy Sharp" src="./src/avatar.jpeg" />
                     <div>
                         <Typography variant="h6" component="h6">
                             // name
@@ -71,4 +71,4 @@ export const Profile = () => {
     );
 }
 
-export default Profile;
+export default CompanyProfile;
