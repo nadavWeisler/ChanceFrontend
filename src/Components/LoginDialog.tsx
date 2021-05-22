@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { TextField, Dialog, Card, CardContent, CardActions, CardHeader, Button } from '@material-ui/core';
+import { TextField, Dialog, Card, CardContent, CardActions, Button } from '@material-ui/core';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 
@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface LoginDialogProps {
     openDialog: boolean;
     onDialogClose: () => void;
-    onDialogSubmit: () => void;
 }
 
 export const LoginDialog = (props: LoginDialogProps) => {
-    const { openDialog, onDialogClose, onDialogSubmit } = props;
+    const { openDialog, onDialogClose } = props;
 
     const classes = useStyles();
     const [email, setEmail] = useState<string>("")
@@ -44,18 +43,10 @@ export const LoginDialog = (props: LoginDialogProps) => {
         LoginUser(email, password);
 
         if (access_token) {
+            onDialogClose();
             localStorage.setItem('access_token', access_token);
             localStorage.setItem('user_id', user_id);
-            onDialogClose();
         }
-    };
-
-    const handleUsernameChange = (event: any) => {
-        setEmail(event.target.value)
-    };
-
-    const handlePasswordChange = (event: any) => {
-        setPassword(event.target.value)
     };
 
     return (
@@ -63,44 +54,35 @@ export const LoginDialog = (props: LoginDialogProps) => {
             open={openDialog}
             onClose={onDialogClose}
         >
-            <form className={classes.container} noValidate autoComplete="off">
-                <Card>
-                    <CardContent>
-                        <div>
-                            <TextField
-                                fullWidth
-                                id="email"
-                                type="email"
-                                label="email"
-                                placeholder="email"
-                                margin="normal"
-                                onChange={handleUsernameChange}
-                            />
-                            <TextField
-                                fullWidth
-                                id="password"
-                                type="password"
-                                label="Password"
-                                placeholder="Password"
-                                margin="normal"
-                                onChange={handlePasswordChange}
-                            />
-                        </div>
-                    </CardContent>
-                    <CardActions>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            color="secondary"
-                            className={classes.loginBtn}
-                            // href="Dashboard"
-                            onClick={handleLogin}
-                        >
-                            Submit
+            <Card>
+                <CardContent>
+                    <TextField
+                        fullWidth
+                        type="email"
+                        label="email"
+                        placeholder="email"
+                        onChange={(event: any) => setEmail(event.target.value)}
+                    />
+                    <TextField
+                        fullWidth
+                        type="password"
+                        label="Password"
+                        placeholder="Password"
+                        onChange={(event: any) => setPassword(event.target.value)}
+                    />
+                </CardContent>
+                <CardActions>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        color="secondary"
+                        className={classes.loginBtn}
+                        onClick={handleLogin}
+                    >
+                        Submit
                         </Button>
-                    </CardActions>
-                </Card>
-            </form>
+                </CardActions>
+            </Card>
         </Dialog>
     );
 }

@@ -41,24 +41,8 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
     const [repassword, setRePassword] = useState<string>("")
     const [admin, setAdmin] = useState<string>("")
 
-    const handleNameChange = (event: any) => {
-        setName(event.target.value)
-    };
-
-    const handleMailChange = (event: any) => {
-        setEmail(event.target.value)
-    };
-
-    const handlePasswordChange = (event: any) => {
-        setPassword(event.target.value)
-    };
-
-    const handlerePasswordChange = (event: any) => {
-        setRePassword(event.target.value)
-    };
-
-    const handleChange = (event: any) => {
-        setAdmin(event.target.value)
+    const handleSignup = () => {
+        onCloseDialog();
     }
 
     return (
@@ -69,12 +53,12 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                         <div>
                             <TextField
                                 fullWidth
-                                id="name"
                                 type="name"
                                 label="Name"
                                 placeholder="Name"
-                                margin="normal"
-                                onChange={handleNameChange}
+                                onChange={(event: any) => {
+                                    setName(event.target.value)
+                                }}
                             />
                             <TextField
                                 fullWidth
@@ -83,7 +67,9 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="email"
                                 placeholder="email"
                                 margin="normal"
-                                onChange={handleMailChange}
+                                onChange={(event: any) => {
+                                    setEmail(event.target.value)
+                                }}
                             />
                             <TextField
                                 fullWidth
@@ -92,7 +78,9 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="Password"
                                 placeholder="Password"
                                 margin="normal"
-                                onChange={handlePasswordChange}
+                                onChange={(event: any) => {
+                                    setPassword(event.target.value)
+                                }}
                             />
                             <TextField
                                 fullWidth
@@ -101,12 +89,20 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 label="Validate Password"
                                 placeholder="Validate Password"
                                 margin="normal"
-                                onChange={handlerePasswordChange}
+                                onChange={(event: any) => {
+                                    setRePassword(event.target.value)
+                                }}
                             />
                         </div>
                         <FormControl component="fieldset">
                             <FormLabel component="legend">user type</FormLabel>
-                            <RadioGroup aria-label="user type" name="user typer1" value={admin} onChange={handleChange}>
+                            <RadioGroup
+                                aria-label="user type"
+                                name="user typer1"
+                                value={admin}
+                                onChange={(event: any) => {
+                                    setAdmin(event.target.value)
+                                }}>
                                 <FormControlLabel value="STUDENT" control={<Radio />} label="student" />
                                 <FormControlLabel value="COMAPNY" control={<Radio />} label="company" />
                             </RadioGroup>
@@ -118,7 +114,8 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                             size="large"
                             color="secondary"
                             className={classes.signupBtn}
-                            disabled={false}>
+                            onClick={handleSignup}
+                        >
                             signup
                         </Button>
                     </CardActions>

@@ -1,14 +1,12 @@
 import { Grid } from '@material-ui/core'
-import { data } from '../../assets/dashboardData'
 import { SearchBox } from '../Searchbox'
-import React, { useEffect, useState } from 'react'
-import { FetchInternships } from '../../store/actions/internship'
+import { useEffect, useState } from 'react'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useActions } from '../../hooks/useActions'
 import { Internship } from '../../types/internship'
 import { SingleInternship } from './SingleInternship'
 
-export const Dashboard = () => {
+export const Dashboard = () => {    
     const { internships } = useTypedSelector(state => state.internships)
     const { FetchInternships } = useActions()
     const [filterString, setFilterString] = useState<string>('');

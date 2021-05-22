@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { IconButton, Badge, Button, AppBar, Toolbar, MenuItem, Menu, Link } from '@material-ui/core';
+import { IconButton, Badge, AppBar, Toolbar, MenuItem, Menu } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from "clsx";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import CreateIcon from '@material-ui/icons/Create';
@@ -88,9 +87,12 @@ const useStyles = makeStyles((theme) => ({
 
 interface MenuAppBarProps {
   authorized: boolean;
+  isCompany: boolean;
 }
 
-export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
+export const MenuAppBar = (props: MenuAppBarProps) => {
+  const { authorized, isCompany } = props;
+
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -190,14 +192,6 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
         </IconButton>
         <p>Dashboard</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -222,9 +216,12 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
             <img src={sam} height="40px" />
           </IconButton>
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit" onClick={() => {setOpenAddProjectDialog(true)}}>
-              <CreateIcon />
-            </IconButton>
+            {
+              isCompany &&
+              <IconButton color="inherit" onClick={() => { setOpenAddProjectDialog(true) }}>
+                <CreateIcon />
+              </IconButton>
+            }
             <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
               <ViewListIcon />
             </IconButton>
@@ -252,10 +249,10 @@ export const MenuAppBar = ({ authorized }: MenuAppBarProps) => {
           </div>
         </Toolbar>
       </AppBar>
-      <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} onDialogSubmit={handleLoginDialog} />
+      <LoginDialog openDialog={openLoginDialog} onDialogClose={handleLoginDialog} />
       <SignUpDialog openDialog={openSignupDialog} onCloseDialog={handleSignupDialog} />
       <ProfileDialog openProfile={openProfileDialog} onDialogClose={handleProfileDialog} />
-      <AddProject openDialog={openAddProjectDialog} onClose={handleAddProjectDialog}/>
+      <AddProject openDialog={openAddProjectDialog} onClose={handleAddProjectDialog} />
       {renderMobileMenu}
       {renderMenu}
     </>
