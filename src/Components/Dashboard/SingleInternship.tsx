@@ -85,7 +85,6 @@ export const SingleInternship = (props: InternshipProps) => {
                 open={openMoreDetails}
             />
             <ResultSnackBar open={openSnackBar} message="Applied Internship" handleClose={handleCloseSnackBar} />
-
         </>
     );
 }

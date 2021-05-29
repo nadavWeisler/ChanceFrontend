@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { TextField, Dialog, Card, CardContent, CardActions, Button } from '@material-ui/core';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
+import { ResultSnackBar } from './ResultSnackBar';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,11 +34,14 @@ export const LoginDialog = (props: LoginDialogProps) => {
     const { openDialog, onDialogClose } = props;
 
     const classes = useStyles();
-    const [email, setEmail] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [loginMsg, setLoginMsg] = useState<string>("");
+    const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+    const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
-    const { access_token, user_id } = useTypedSelector(state => state.login)
-    const { LoginUser } = useActions()
+    const { access_token, user_id } = useTypedSelector(state => state.login);
+    const { LoginUser } = useActions();
 
     const handleLogin = () => {
         LoginUser(email, password);
@@ -46,10 +50,17 @@ export const LoginDialog = (props: LoginDialogProps) => {
             onDialogClose();
             localStorage.setItem('access_token', access_token);
             localStorage.setItem('user_id', user_id);
+            setLoginSuccess(true);
+            setLoginMsg("Login successed!")
+        } else {
+            setLoginSuccess(false);
+            setLoginMsg("Login failed.")
         }
+        setOpenSnackBar(true);
     };
 
     return (
+        <>
         <Dialog
             open={openDialog}
             onClose={onDialogClose}
@@ -84,5 +95,7 @@ export const LoginDialog = (props: LoginDialogProps) => {
                 </CardActions>
             </Card>
         </Dialog>
+        <ResultSnackBar message={loginMsg} handleClose={() => setOpenSnackBar(false)} open={openSnackBar} success={loginSuccess ? true : false}/>
+        </>
     );
 }

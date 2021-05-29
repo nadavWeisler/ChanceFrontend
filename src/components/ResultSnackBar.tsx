@@ -5,7 +5,7 @@ export interface ResultSnackBarProps {
     open: boolean;
     handleClose: () => void;
     message: string;
-    success?: true | undefined;
+    success?: boolean;
     autoHideDuration?: 6000 | undefined;
 }
     

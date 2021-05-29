@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import axios from "axios";
-import { GET_INTERNSHIP_DATA_LINK } from "../../utils/links";
 import { InternshipAction,CreateInternshipAction, InternshipActionTypes } from "../../types/internship";
+import { BASE_URL, GET_INTERNSHIP_DATA_LINK, URLS, URL_TYPES } from "../api";
 
 export const FetchInternships = (token: string = "") => {
     return async (dispatch: Dispatch<InternshipAction>) => {
@@ -41,7 +41,7 @@ export const CreateInternships = (user_id: string, project_name: string, duratio
             fd.append("field", field);
             fd.append("tags", tags);
             fd.append("description", description);
-            const response = await axios.post('http://127.0.0.1:4500/api/personalSpace/company',
+            const response = await axios.post(BASE_URL + '/' + URL_TYPES.PERSONAL_SPACE + '/' + URLS.COMPENY,
             fd, config);
             setTimeout(() => {
                 dispatch({
