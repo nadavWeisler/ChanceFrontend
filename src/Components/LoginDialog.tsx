@@ -61,41 +61,41 @@ export const LoginDialog = (props: LoginDialogProps) => {
 
     return (
         <>
-        <Dialog
-            open={openDialog}
-            onClose={onDialogClose}
-        >
-            <Card>
-                <CardContent>
-                    <TextField
-                        fullWidth
-                        type="email"
-                        label="email"
-                        placeholder="email"
-                        onChange={(event: any) => setEmail(event.target.value)}
-                    />
-                    <TextField
-                        fullWidth
-                        type="password"
-                        label="Password"
-                        placeholder="Password"
-                        onChange={(event: any) => setPassword(event.target.value)}
-                    />
-                </CardContent>
-                <CardActions>
-                    <Button
-                        variant="contained"
-                        size="large"
-                        color="secondary"
-                        className={classes.loginBtn}
-                        onClick={handleLogin}
-                    >
-                        Submit
+            <Dialog
+                open={openDialog}
+                onClose={onDialogClose}
+            >
+                <Card>
+                    <CardContent>
+                        <TextField
+                            fullWidth
+                            type="email"
+                            label="email"
+                            placeholder="email"
+                            onChange={(event: any) => setEmail(event.target.value)}
+                        />
+                        <TextField
+                            fullWidth
+                            type="password"
+                            label="Password"
+                            placeholder="Password"
+                            onChange={(event: any) => setPassword(event.target.value)}
+                        />
+                    </CardContent>
+                    <CardActions>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            color="secondary"
+                            className={classes.loginBtn}
+                            onClick={handleLogin}
+                        >
+                            Submit
                         </Button>
-                </CardActions>
-            </Card>
-        </Dialog>
-        <ResultSnackBar message={loginMsg} handleClose={() => setOpenSnackBar(false)} open={openSnackBar} success={loginSuccess ? true : false}/>
+                    </CardActions>
+                </Card>
+            </Dialog>
+            <ResultSnackBar message={loginMsg} handleClose={() => setOpenSnackBar(false)} open={openSnackBar} success={loginSuccess ? true : false} />
         </>
     );
 }
