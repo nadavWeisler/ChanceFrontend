@@ -10,23 +10,24 @@ export const Dashboard = () => {
     const { internships } = useTypedSelector(state => state.internships)
     const { FetchInternships } = useActions()
     const [filterString, setFilterString] = useState<string>('');
-    const [filteredList, setFilteredList] = useState<Array<Internship>>([]);
+    const [filteredList, setFilteredList] = useState<Array<Internship>>([]);    
 
-    const getFliterOptions = (): Array<Internship> => {
-        return internships.filter(filterStr => {
-            return filterStr.name.includes(filterString.toString()) ||
-                filterStr.details.includes(filterString.toString())
-        }
-        );
-    }
+    const getFliterOptions = (): Array<Internship> => (
+        internships.filter(filterStr => {
+            return filterStr.name.includes(filterString) ||
+                filterStr.details.includes(filterString) || 
+                filterString == ''
+        })
+    );
 
     useEffect(() => {
         FetchInternships();
         setFilteredList(getFliterOptions());
-    }, []);
+    }, [filterString]);
 
     const onFilter = (value: string) => {
         setFilterString(value);
+        console.log(filterString);
     }
 
     return (
@@ -40,7 +41,7 @@ export const Dashboard = () => {
                 alignItems="flex-start"
             >
                 {
-                    internships.map((option: Internship) => (
+                    filteredList.map((option: Internship) => (
                         <Grid item xs={12} sm={6} md={3} key={internships.indexOf(option)}>
                             <SingleInternship
                                 name={option.name}
