@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { IconButton, Badge, AppBar, Toolbar, MenuItem, Menu } from '@material-ui/core';
+import { IconButton, Badge, AppBar, Toolbar, MenuItem, Menu, Dialog } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from "clsx";
@@ -12,6 +12,7 @@ import { SignUpDialog } from "./SignupDialog";
 import ProfileDialog from "./ProfileDialog";
 import sam from "./../assets/sam.jpeg"
 import AddProject from "./AddProject";
+import { CompanyView } from "./CompanyView/CompanyView";
 
 const drawerWidth = 240;
 
@@ -125,6 +126,12 @@ export const MenuAppBar = (props: MenuAppBarProps) => {
     setOpenAddProjectDialog(!openAddProjectDialog);
   }
 
+  const [openTest, setTest] = useState<boolean>(false)
+
+  const handleTest = () => {
+    setTest(!openTest);
+  }
+
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -222,6 +229,9 @@ export const MenuAppBar = (props: MenuAppBarProps) => {
                 <CreateIcon />
               </IconButton>
             }
+            <IconButton color="inherit" onClick={() => { setTest(true) }}>
+              <NotificationsIcon />
+            </IconButton>
             <IconButton aria-label="Dashboard" color="inherit" href="Dashboard">
               <ViewListIcon />
             </IconButton>
@@ -253,6 +263,10 @@ export const MenuAppBar = (props: MenuAppBarProps) => {
       <SignUpDialog openDialog={openSignupDialog} onCloseDialog={handleSignupDialog} />
       <ProfileDialog openProfile={openProfileDialog} onDialogClose={handleProfileDialog} />
       <AddProject openDialog={openAddProjectDialog} onClose={handleAddProjectDialog} />
+      <Dialog open={openTest} onClose={handleTest} fullWidth>
+        <CompanyView />
+      </Dialog>
+
       {renderMobileMenu}
       {renderMenu}
     </>

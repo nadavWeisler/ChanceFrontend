@@ -5,6 +5,12 @@ export interface Internship {
     details: string;
 }
 
+export enum InternshipStatus {
+    pending = "Pending",
+    done = "Done",
+    inProgress = "In Progress"
+}
+
 export interface InternshipState {
     internships: Array<Internship>;
     loading: boolean;

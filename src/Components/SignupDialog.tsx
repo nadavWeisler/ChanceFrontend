@@ -100,7 +100,6 @@ export const SignUpDialog = (props: SignUpDialogProps) => {
                                 />
                             </div>
                             <FormControl component="fieldset">
-                                <FormLabel component="legend">user type</FormLabel>
                                 <RadioGroup
                                     aria-label="user type"
                                     name="user typer1"
