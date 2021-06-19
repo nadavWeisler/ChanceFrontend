@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import { Typography } from '@material-ui/core';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
-import img from 'C:/Weisler/Programming/ChanceFrontend/src/assets/cool.jpeg'
+import img from '../assets/cool.jpeg'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

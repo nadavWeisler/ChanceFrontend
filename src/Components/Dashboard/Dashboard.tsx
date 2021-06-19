@@ -16,7 +16,7 @@ export const Dashboard = () => {
         internships.filter(filterStr => {
             return filterStr.name.includes(filterString) ||
                 filterStr.details.includes(filterString) || 
-                filterString == ''
+                filterString === ''
         })
     );
 

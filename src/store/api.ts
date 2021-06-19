@@ -13,3 +13,5 @@ export const URLS = {
 }
 
 export const GET_INTERNSHIP_DATA_LINK = "https://api.npoint.io/70694b65b3c2c67af6d0"
+
+export const GET_COMPANY_LINK = "https://api.npoint.io/918cae1a4f37de5e440d"

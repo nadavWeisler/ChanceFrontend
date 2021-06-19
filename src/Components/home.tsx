@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
-import img from 'C:/Weisler/Programming/ChanceFrontend/src/assets/Untitled.png';
-import img2 from 'C:/Weisler/Programming/ChanceFrontend/src/assets/Untitled2.png';
+import img from '../assets/Untitled.png';
+import img2 from '../assets/Untitled2.png';
 
 
 export const Home = (): ReactElement => {
